@@ -7,12 +7,18 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Home Page</h1>
-    <?php foreach ($news as $news_item): ?>
-    <hr>
-        <h3><?php echo $news_item->title; ?> by <?php echo $news_item->name; ?> </h3>
-        <p><a href="<?php echo site_url('news/'.$news_item->slug); ?>">View article</a></p>
-    <hr>
-<?php endforeach; ?>
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <?php foreach ($news as $news_item): ?>
+                <div class="card">
+                    <div class="card-body">
+                    <h3><?php echo $news_item->title; ?> by <?php echo $news_item->name; ?> </h3>
+                    <p><a href="<?php echo site_url('news/'.$news_item->slug); ?>">View article</a></p>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+    
 </body>
 </html>

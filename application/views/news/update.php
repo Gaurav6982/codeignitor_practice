@@ -16,7 +16,7 @@
     <label for="text">Text</label>
     <textarea name="text" class="form-control" ><?php echo $row->text??""?></textarea><br />
 
-    <input type="submit" name="submit"  class="btn btn-secondary"  value="Update news item" />
+    <input type="submit" name="submit"  class="btn btn-secondary"  value="Update news" />
 
 </form>
 </div>

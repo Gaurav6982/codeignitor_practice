@@ -48,7 +48,7 @@ class News extends CI_Controller {
             }
             else
             {
-                $data['msg']="Post Created Successfully!!";
+                $data['msg']="News Created Successfully!!";
                 if($this->news_model->set_news())
                 $this->load->view('news/success',$data);
                 else
@@ -82,7 +82,7 @@ class News extends CI_Controller {
             }
             $this->form_validation->set_rules('title', 'Title', 'required');
             $this->form_validation->set_rules('text', 'Text', 'required');
-            $data['title']="Update a Post";
+            $data['title']="Update a News";
             $data['row']=$this->news_model->get_news_by_id($id);
             if ($this->form_validation->run() === FALSE)
             {
@@ -91,7 +91,7 @@ class News extends CI_Controller {
             }
             else
             {
-                $data['msg']="Post Updated Successfully!!";
+                $data['msg']="News Updated Successfully!!";
                 if($this->news_model->update_news($id))
                 $this->load->view('news/success',$data);
                 else
