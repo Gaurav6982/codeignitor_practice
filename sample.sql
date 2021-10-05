@@ -2,10 +2,10 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Oct 03, 2021 at 01:53 PM
--- Server version: 10.4.20-MariaDB
--- PHP Version: 7.4.22
+-- Host: localhost
+-- Generation Time: Oct 05, 2021 at 05:35 PM
+-- Server version: 5.7.35
+-- PHP Version: 7.3.31-1+ubuntu20.04.1+deb.sury.org+1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -33,8 +33,8 @@ CREATE TABLE `news` (
   `slug` varchar(128) NOT NULL,
   `text` text NOT NULL,
   `user_id` int(11) NOT NULL,
-  `create_timestamp` timestamp NOT NULL DEFAULT current_timestamp(),
-  `update_timestamp` timestamp NOT NULL DEFAULT current_timestamp()
+  `create_timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -42,12 +42,13 @@ CREATE TABLE `news` (
 --
 
 INSERT INTO `news` (`id`, `title`, `slug`, `text`, `user_id`, `create_timestamp`, `update_timestamp`) VALUES
-(13, 'My post new updated', 'my-post-new-updated', 'afsdfhjk', 0, '2021-10-01 10:43:41', '2021-10-01 10:43:41'),
-(15, 'My post 64', 'my-post-64', 'safs', 0, '2021-10-01 10:43:41', '2021-10-01 10:43:41'),
-(17, 'new post 1', 'new-post-1', 'THis is my post\r\n', 2, '2021-10-01 12:05:49', '2021-10-01 12:05:49'),
-(18, 'new post 2', 'new-post-2', 'This is my post', 2, '2021-10-01 12:05:57', '2021-10-01 12:05:57'),
-(19, 'new post', 'new-post', 'this is post', 1, '2021-10-01 12:35:28', '2021-10-01 12:35:28'),
-(20, 'Test Title', 'test-title', 'This is test Post 1', 3, '2021-10-01 12:38:12', '2021-10-01 12:38:12');
+(17, 'test', 'test', '&lt;script&gt;alert(&quot;Hello&quot;);&lt;/script&gt;', 2, '2021-10-01 12:05:49', '2021-10-01 12:05:49'),
+(18, 'test', 'test', '&lt;script&gt;alert(&quot;Hello&quot;);&lt;/script&gt;', 2, '2021-10-01 12:05:57', '2021-10-01 12:05:57'),
+(19, 'test', 'test', '&lt;script&gt;alert(&quot;Hello&quot;);&lt;/script&gt;', 1, '2021-10-01 12:35:28', '2021-10-01 12:35:28'),
+(20, 'test', 'test', '&lt;script&gt;alert(&quot;Hello&quot;);&lt;/script&gt;', 3, '2021-10-01 12:38:12', '2021-10-01 12:38:12'),
+(21, 'test', 'test', '&lt;script&gt;alert(&quot;Hello&quot;);&lt;/script&gt;', 4, '2021-10-03 14:58:03', '2021-10-03 14:58:03'),
+(38, 'awd', 'awd', '1233', 5, '2021-10-05 11:57:42', '2021-10-05 11:57:42'),
+(39, 'wad', 'wad', '12311', 5, '2021-10-05 11:59:14', '2021-10-05 11:59:14');
 
 -- --------------------------------------------------------
 
@@ -60,8 +61,8 @@ CREATE TABLE `users` (
   `name` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
-  `create_timestamp` timestamp NOT NULL DEFAULT current_timestamp(),
-  `update_timestamp` timestamp NOT NULL DEFAULT current_timestamp()
+  `create_timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -71,7 +72,9 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`user_id`, `name`, `email`, `password`, `create_timestamp`, `update_timestamp`) VALUES
 (1, 'Gaurav', 'gaurav.jss.027@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', '2021-10-01 11:15:38', '2021-10-01 11:15:38'),
 (2, 'new_user', 'new@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', '2021-10-01 12:05:40', '2021-10-01 12:05:40'),
-(3, 'test', 'test@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', '2021-10-01 12:37:57', '2021-10-01 12:37:57');
+(3, 'test', 'test@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', '2021-10-01 12:37:57', '2021-10-01 12:37:57'),
+(4, 'Hello', 'hello@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', '2021-10-03 14:57:52', '2021-10-03 14:57:52'),
+(5, 'test', 'test@test.com', '81dc9bdb52d04dc20036dbd8313ed055', '2021-10-05 08:31:14', '2021-10-05 08:31:14');
 
 --
 -- Indexes for dumped tables
@@ -82,7 +85,8 @@ INSERT INTO `users` (`user_id`, `name`, `email`, `password`, `create_timestamp`,
 --
 ALTER TABLE `news`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `slug` (`slug`);
+  ADD KEY `slug` (`slug`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `users`
@@ -98,13 +102,23 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `news`
 --
 ALTER TABLE `news`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `news`
+--
+ALTER TABLE `news`
+  ADD CONSTRAINT `news_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

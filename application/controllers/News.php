@@ -18,7 +18,18 @@ class News extends CI_Controller {
             $this->load->view('news/index', $data);
             $this->load->view('templates/footer');
         }
-
+        public function get_news_by_user(){
+            echo json_encode($this->news_model->get_news_by_user());
+        }
+        public function get_all_news_api(){
+            echo json_encode($this->news_model->get_news());
+        }
+        public function set_news_api(){
+            if($this->news_model->set_news())
+            echo json_encode(['success'=>"News Created Successfully!"]);
+            else
+            echo json_encode(['error'=>"Something Went Wrong!"]);
+        }
         public function view($slug = NULL)
         {
                 $data['news_item'] = $this->news_model->get_news($slug);
@@ -89,18 +100,22 @@ class News extends CI_Controller {
                 $this->load_view('update',$data);
                 return;
             }
-            else
-            {
-                $data['msg']="News Updated Successfully!!";
-                if($this->news_model->update_news($id))
-                $this->load->view('news/success',$data);
-                else
-                $this->load->view('news/error');
+            // else
+            // {
+            //     $data['msg']="News Updated Successfully!!";
+            //     if($this->news_model->update_news($id))
+            //     $this->load->view('news/success',$data);
+            //     else
+            //     $this->load->view('news/error');
                 
-            }
+            // }
+        }
+        public function update_news_api($id){
             
-
-
+            if($this->news_model->update_news($id))
+                echo json_encode(['success'=>'News Updated Successfully!']);
+            else
+                echo json_encode(['error'=>'Something Wrong!']);
         }
         public function load_view($page='index',$data=NULL){
             $this->load->view('templates/header',$data);

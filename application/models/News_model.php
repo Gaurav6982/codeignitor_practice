@@ -32,16 +32,18 @@ class News_model extends CI_Model {
             $query = $this->db->get_where('news', array('slug' => $slug));
             return $query->row();
         }
+        
         public function set_news()
         {
+            
             $this->load->helper('url');
 
             $slug = url_title($this->input->post('title'), 'dash', TRUE);
 
             $data = array(
-                'title' => $this->input->post('title'),
+                'title' => htmlentities($this->input->post('title')),
                 'slug' => $slug,
-                'text' => $this->input->post('text'),
+                'text' => htmlentities($this->input->post('text')),
                 'user_id'=>$this->session->userdata('user')->user_id,
             );
 
@@ -52,17 +54,28 @@ class News_model extends CI_Model {
             $this->load->helper('url');
 
             $slug = url_title($this->input->post('title'), 'dash', TRUE);
-
+            $user=$this->session->userdata("user");
             $data = array(
-                'title' => $this->input->post('title'),
+                'title' => htmlentities($this->input->post('title')),
                 'slug' => $slug,
-                'text' => $this->input->post('text')
+                'text' => htmlentities($this->input->post('text'))
             );
-            $this->db->where('id',$id);
-            return $this->db->update('news', $data);
+            $query=$this->db->get_where('news',['id'=>$id]);
+            $res=$query->row();
+            if($res->user_id==$user->user_id)
+            {
+                $this->db->where('id',$id);
+                return $this->db->update('news', $data);
+            }
+            else return false;
         }
         public function delete_news($id){
+            $user=$this->session->userdata("user");
+            $query=$this->db->get_where('news',['id'=>$id]);
+            $res=$query->row();
+            if($res->user_id==$user->user_id){
             $this->db->where('id',$id);
-            return $this->db->delete('news');
+            return $this->db->delete('news');}
+            return false;
         }
 }

@@ -8,17 +8,36 @@
 </head>
 <body>
     <div class="row">
-        <div class="col-md-6 offset-md-3">
-            <?php foreach ($news as $news_item): ?>
-                <div class="card">
-                    <div class="card-body">
-                    <h3><?php echo $news_item->title; ?> by <?php echo $news_item->name; ?> </h3>
-                    <p><a href="<?php echo site_url('news/'.$news_item->slug); ?>">View article</a></p>
-                    </div>
-                </div>
-            <?php endforeach; ?>
+    <input type="hidden" id="site_url" value="<?php echo site_url()?>"/>
+        <div class="col-md-6 offset-md-3" id="data">
+            
         </div>
     </div>
+    <script>
     
+    $(document).ready(function(){
+        $.ajax({
+            url:'/api/get_all_news',
+            type:"GET",
+            data:"",
+            success:function(data){
+                data=JSON.parse(data);
+                var string="";
+                $.each(data,function(index,val){
+                    
+                    string+='<div class="card">';
+                    string+='<div class="card-body">';
+                    string+='<h3>'+val.title+' by '+val.name+' </h3>';
+                    string+='<p><a href="'+site_url+'/news/'+val.slug+'">View article</a></p>';
+                    string+='</div>';
+                    string+='</div>';
+            
+                });
+                $('#data').html(string);
+            }
+        })
+    })
+
+</script>
 </body>
 </html>
