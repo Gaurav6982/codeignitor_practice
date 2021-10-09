@@ -51,6 +51,7 @@ class LoginRegister extends CI_Controller{
 
     }
     public function register(){
+        echo json_encode(['data']);
         if($_SERVER['REQUEST_METHOD']=='POST'){
             $this->form_validation->set_rules('name',"User Name",'required');
             $this->form_validation->set_rules('email',"Email",'required');

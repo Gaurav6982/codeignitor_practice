@@ -67,7 +67,7 @@ class News_model extends CI_Model {
                 $this->db->where('id',$id);
                 return $this->db->update('news', $data);
             }
-            else return false;
+            else return false; 
         }
         public function delete_news($id){
             $user=$this->session->userdata("user");
