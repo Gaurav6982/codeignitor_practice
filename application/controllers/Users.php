@@ -7,6 +7,7 @@ class Users extends CI_Controller {
                 $this->load->model('news_model');
                 $this->load->helper('url_helper');
                 $this->load->library('session');
+                header('Access-Control-Allow-Origin: *');  
         }
 
         public function add_user(){
