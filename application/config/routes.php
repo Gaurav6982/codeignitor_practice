@@ -50,7 +50,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 
-$route['api/add_user']['POST']='users/add_user';
+$route['api/add_user']['GET']='users/add_user';
 
 
 
