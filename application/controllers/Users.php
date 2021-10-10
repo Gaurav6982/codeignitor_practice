@@ -10,6 +10,11 @@ class Users extends CI_Controller {
         }
 
         public function add_user(){
+            $data=[
+                'name'=>$this->input->post('name'),
+                'email'=>$this->input->post('email'),
+                'password'=>$this->input->post('password'),
+            ];
             $this->load->model('users_model');
             if($this->users_model->create_user($data)){
                 echo json_encode(['msg'=>'Success']);
