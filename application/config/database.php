@@ -84,7 +84,7 @@ $db['default'] = array(
 	// 'username' => 'root',
 	// 'password' => 'gamesb321',
 	// 'database' => 'sample',
-	// 'dbdriver' => 'mysqli',
+	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => TRUE,
 	'db_debug' => (ENVIRONMENT !== 'production'),
