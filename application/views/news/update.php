@@ -36,7 +36,6 @@
             },
             success:function(data){
                 $('#success').html(JSON.parse(data).success);
-                
             },
             error:function(err){
                 $('#error').html(JSON.parse(err).success);
