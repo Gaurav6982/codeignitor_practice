@@ -51,7 +51,6 @@ class LoginRegister extends CI_Controller{
 
     }
     public function register(){
-        $this->input->is_ajax_request();
         echo json_encode(['data']);
         if($_SERVER['REQUEST_METHOD']=='POST'){
             $this->form_validation->set_rules('name',"User Name",'required');
