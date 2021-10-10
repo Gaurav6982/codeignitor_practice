@@ -75,11 +75,11 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'ec2-44-198-154-255.compute-1.amazonaws.com',
-	'username' => 'vphhvteusomgod',
-	'password' => 'e4f946d2184b59b6887527159aace29d43e62b7e7b2e169d681e5c1c4492692a',
-	'database' => 'ddjv1t85uvmavd',
-	'dbdriver' => 'postgre',
+	'hostname' => 'remotemysql.com',
+	'username' => 'GCVM8C2UyY',
+	'password' => 'bWLiwKlm8J',
+	'database' => 'GCVM8C2UyY',
+	// 'dbdriver' => 'postgre',
 	// 'hostname' => 'localhost',
 	// 'username' => 'root',
 	// 'password' => 'gamesb321',
